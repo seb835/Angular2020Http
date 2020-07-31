@@ -15,14 +15,11 @@ export class PostsService {
     const postData: Post = { title: title, content: content };
 
     // Send Http request
-    this.http
+    return this.http
       .post<{ name: string }>(
         'https://angular2020http.firebaseio.com/posts.json',
         postData
-      )
-      .subscribe(responseData => {
-        console.log(responseData);
-      });
+      );
   }
 
   fetchPosts() {
@@ -39,5 +36,9 @@ export class PostsService {
           return postsArray;
         })
       );
+  }
+
+  deletePosts() {
+    return this.http.delete('https://angular2020http.firebaseio.com/posts.json');
   }
 }
